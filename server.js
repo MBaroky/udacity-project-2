@@ -6,6 +6,7 @@ const express = require('express'); // express
 const bodyParser = require('body-parser'); // body-parser
 const cors = require('cors');
 
+
 // Start up an instance of app
 const app = express();
 
@@ -27,3 +28,7 @@ const listen = ()=>{
     console.log(`server up and running at: ${port}`);
 }
 app.listen(port,listen);
+app.post('/addData', (req,res)=>{
+    console.log(req.body);
+    res.send(req.body);
+});
