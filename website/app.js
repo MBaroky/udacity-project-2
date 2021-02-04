@@ -43,10 +43,12 @@ const onSubmit = ()=>{
     let find = document.getElementById('zip').value;// '94040';
     let phrase = document.getElementById('feelings').value;// '94040';
 
-    doGet(baseURL, find, key)
+    doGet(baseURL, find, key) // getting the data from weather API
     .then(function(data){
         console.log(data.main.temp);
+        // then posting this data and the input from user to our endpoint
         doPost('/addData', {temp:data.main.temp,date: newDate, userRes:phrase});
+        // then getting the endpoint entries und updating our UI with the latest entry
         updateUI()
     });
 }
@@ -56,8 +58,7 @@ const updateUI = async()=>{
     const req = await fetch('/getData');
     try {
         const updateUIData = await req.json();
-        console.log(updateUIData.length);
-        const {temp, date, userRes} = updateUIData[updateUIData.length-1];
+        const {temp, date, userRes} = updateUIData[updateUIData.length-1]; // deconstructing the latest entry from the endpoint on our server
         document.getElementById('date').innerHTML = date;
         document.getElementById('temp').innerHTML = temp;
         document.getElementById('content').innerHTML = userRes;
