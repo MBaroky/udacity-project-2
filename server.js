@@ -40,5 +40,10 @@ app.post('/addData', (req,res)=>{
     }
     // pusching newData to the endpoint
     projectData.push(newData);
+});
+
+// GET request
+app.get('/getData', (req, res)=>{
+    res.send(projectData);
     console.log(projectData);
 });
