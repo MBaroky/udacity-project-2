@@ -1,5 +1,5 @@
 /* Global Variables */
-const key = '&appid=3944bf9f5d03c16fc0a07f6efc71758a';
+const key = '&units=imperial&appid=3944bf9f5d03c16fc0a07f6efc71758a';
 const baseURL = 'https://api.openweathermap.org/data/2.5/weather?zip=';
 
 // Create a new date instance dynamically with JS
@@ -49,7 +49,7 @@ const onSubmit = ()=>{
         // then posting this data and the input from user to our endpoint
         doPost('/addData', {temp:data.main.temp,date: newDate, userRes:phrase});
         // then getting the endpoint entries und updating our UI with the latest entry
-        updateUI()
+        updateUI();
     });
 }
 
@@ -58,10 +58,10 @@ const updateUI = async()=>{
     const req = await fetch('/getData');
     try {
         const updateUIData = await req.json();
-        const {temp, date, userRes} = updateUIData[updateUIData.length-1]; // deconstructing the latest entry from the endpoint on our server
-        document.getElementById('date').innerHTML = date;
-        document.getElementById('temp').innerHTML = temp;
-        document.getElementById('content').innerHTML = userRes;
+        const {temp, date, userRes} = updateUIData; // deconstructing the latest entry from the endpoint on our server
+        document.getElementById('date').innerHTML = `Today is: ${date}`;
+        document.getElementById('temp').innerHTML = `Temprature is: ${temp} °C`;
+        document.getElementById('content').innerHTML = `You feel: ${userRes}`;
 
     } catch (error) {
         console.log(error);
