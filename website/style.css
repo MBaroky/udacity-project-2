@@ -2,12 +2,12 @@ body{
     background: #fffff8;
     font-family: -apple-system, BlinkMacSystemFont, sans-serif;
 }
-
 #app{
     display: grid;
     grid-auto-rows: minmax(150px, auto);
     /* grid-template-columns:  */
-    height:100vh;
+    min-height:100vh;
+    height: auto;
     background: #f23557;
     color: #f0d43a;
     justify-content: center;
@@ -15,6 +15,26 @@ body{
     font-size: 20px;
     font-family: 'Oswald', sans-serif;
 }
+#app.grid-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, auto 1fr) 1fr;
+    gap: 1em 0px;
+    grid-template-areas:
+      "."
+      "."
+      "."
+      "."
+      ".";
+  }
+
+  @media all and (-ms-high-contrast:none) {
+    #app.grid-container {
+      display: -ms-grid;
+      -ms-grid-columns: 1fr;
+      -ms-grid-rows: repeat(2, auto 1fr) 1fr;
+    }
+  }
 
 .holder{
 
@@ -65,8 +85,8 @@ input{
 }
 
 button{
-    width: 400px;
-    height: 100px;
+    width: 250px;
+    height: 80px;
     background: #3b4a6b;
     color: #f0d43a;
     font-size: 26px;
@@ -92,20 +112,20 @@ button:focus {
     outline: none;
 }
 /* Style for Placeholder Text*/
-::placeholder { /* Firefox, Chrome, Opera */ 
-    color: #f0d43a; 
+::placeholder { /* Firefox, Chrome, Opera */
+    color: #f0d43a;
     font-family: 'Oswald', sans-serif;
 
-} 
-  
-:-ms-input-placeholder { /* Internet Explorer 10-11 */ 
-    color: #f0d43a; 
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: #f0d43a;
     font-family: 'Oswald', sans-serif;
 
-} 
-  
-::-ms-input-placeholder { /* Microsoft Edge */ 
-    color: #f0d43a; 
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+    color: #f0d43a;
     font-family: 'Oswald', sans-serif;
 
-} 
+}

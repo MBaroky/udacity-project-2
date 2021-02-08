@@ -1,5 +1,5 @@
 // Setup empty JS object to act as endpoint for all routes
-let projectData = {};
+let projectData = {temp: '', data: '',userRes: ''};
 
 // Require Express to run server and routes
 const express = require('express'); // express
@@ -37,7 +37,7 @@ app.post('/addData', (req,res)=>{
         temp,
         date,
         userRes
-    }
+    };
     // pusching newData to the endpoint
     projectData = newData;
     // ending request with status 200

@@ -4,7 +4,8 @@ const baseURL = 'https://api.openweathermap.org/data/2.5/weather?zip=';
 
 // Create a new date instance dynamically with JS
 let d = new Date();
-let newDate = d.getMonth()+'.'+ d.getDate()+'.'+ d.getFullYear();
+let newDate = `${d.getMonth()+1}.${d.getDate()}.${d.getFullYear()}`;
+console.log(newDate);
 
 // get async fnc
 const doGet = async (baseURL, find, key)=>{
@@ -15,19 +16,19 @@ const doGet = async (baseURL, find, key)=>{
         console.log(data.main.temp);
         return data;
     } catch (error) {
-        console.log(error)
+        console.log(error, data);
     }
 }
 
 // post async function
 const doPost = async (url='', data ={})=>{
     const res = await fetch(url, {
-        method:'Post',
+        method:'POST',
         credentials: 'same-origin',
         headers:{
-            'Content-type':'application/json'
+            'Content-Type':'application/json'
         },
-        body:JSON.stringify(data)
+        body: JSON.stringify(data)
     });
     try {
         const newData = await res.json();
@@ -47,7 +48,11 @@ const onSubmit = ()=>{
     .then(function(data){
         console.log(data.main.temp);
         // then posting this data and the input from user to our endpoint
-        doPost('/addData', {temp:data.main.temp,date: newDate, userRes:phrase});
+        doPost('/addData', {
+            temp:data.main.temp,
+            date:newDate,
+            userRes:phrase
+        });
         // then getting the endpoint entries und updating our UI with the latest entry
         updateUI();
     });
